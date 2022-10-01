@@ -4,7 +4,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '11.0'
 install! 'cocoapods', :deterministic_uuids => false
 
-target 'RNBluesTest' do
+target 'Blues' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -21,7 +21,7 @@ target 'RNBluesTest' do
 
   pod 'RNFS', :path => '../node_modules/react-native-fs'
 
-  target 'RNBluesTestTests' do
+  target 'BluesTests' do
     inherit! :complete
     # Pods for testing
   end

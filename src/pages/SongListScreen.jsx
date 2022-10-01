@@ -10,11 +10,10 @@ LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by mes
 
 // you can set your own bluetooth speaker device name below.
 const SPEAKER_DEVICE_NAME = 'MH-M38';
+const MAX_SCAN_TIME = 12000;
 
 // or you can create your own predicate function for discriminate your own bluetooth speaker.
 const predicate = (device) => device.name === SPEAKER_DEVICE_NAME;
-
-
 
 const SongListScreen = () => {
   const [isBluetoothEnabled, setBluetoothEnabled] = useState((async()=>await Blues.isBluetoothEnabled())());
@@ -115,6 +114,12 @@ const SongListScreen = () => {
     } else {
       console.log('>> startScan(): device not found in paired devices. start scanning...');
       await Blues.startScan();
+      const timerId = setTimeout(() => {
+        Blues.stopScan();
+        setScanning(false);
+        ToastAndroid.show(`블루투스 장치(${SPEAKER_DEVICE_NAME})를 찾을 수 없습니다.`, ToastAndroid.SHORT);
+        clearTimeout(timerId);
+      }, MAX_SCAN_TIME);
     }
   };
 

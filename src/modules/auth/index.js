@@ -1,32 +1,47 @@
 import { Platform } from 'react-native';
 import { check, PERMISSIONS, request, RESULTS } from 'react-native-permissions';
 
-const requiredPermissions = (() => {
-  const permissions = [
-    PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION,
-    PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-  ];
+const debug = true;
+
+const getRequiredPermissions = () => {
+  const permissions = [];
+  debug && console.log('android api level:', Platform.Version);
+  if (Platform.Version <= 28) {
+    permissions.push(
+      PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION
+      );
+  }
+  /*
+  else if (Platform.Version <= 30) {
+    permissions.push(
+      PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION
+    );
+  }
+  */
   if (Platform.Version >= 31) {
-    permissions.concat(
+    permissions.push(
       PERMISSIONS.ANDROID.BLUETOOTH_SCAN,
       PERMISSIONS.ANDROID.BLUETOOTH_CONNECT
     );
   }
   return permissions;
-})();
+};
 
 async function _request(permission) {
-  console.log('check permission:', permission);
-  if (await check(permission) !== RESULTS.GRANTED) {
-    console.log('request permission:', permission);
-    return await request(permission);
+  const c = await check(permission);
+  debug && console.log('check permission:', permission, '=>', c);
+  if (c === RESULTS.GRANTED) {
+    return c;
   } else {
-    return RESULTS.GRANTED;
+    debug && console.log('request permission:', permission);
+    return await request(permission);
   }
 }
 
 export async function requestPermissions() {
-  for (const p of requiredPermissions) {
+  const ps = getRequiredPermissions();
+  debug && console.log('required permissions:', ps);
+  for (const p of ps) {
     let res;
     try {
       res = await _request(p);

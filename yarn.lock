@@ -6031,10 +6031,10 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   "version" "18.2.0"
 
-"react-native-blues@^0.2.0":
-  "integrity" "sha512-s2vcowq/GTByC4xK+bWckuZxfkc3tfM9DzJz2zM/kNG3n+mZGpaDvAGB08FJy5tdG6s7c5bfSXDcfDR8blqayA=="
-  "resolved" "https://registry.npmjs.org/react-native-blues/-/react-native-blues-0.2.0.tgz"
-  "version" "0.2.0"
+"react-native-blues@^0.2.5":
+  "integrity" "sha512-0vipoHnsr8HY2yzST90gVi34sp3Bq/R4OVwVpFufHop87T5Kt/DuXBldROnkw2I6P5apGliugdol675onHMeUw=="
+  "resolved" "https://registry.npmjs.org/react-native-blues/-/react-native-blues-0.2.5.tgz"
+  "version" "0.2.5"
 
 "react-native-codegen@^0.0.17":
   "integrity" "sha512-7GIEUmAemH9uWwB6iYXNNsPoPgH06pxzGRmdBzK98TgFBdYJZ7CBuZFPMe4jmHQTPOkQazKZ/w5O6/71JBixmw=="
