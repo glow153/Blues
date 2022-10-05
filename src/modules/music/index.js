@@ -16,7 +16,7 @@ export const init = async () => {
 export const list = () => {
   return [
     'asmr1.mp3',
-    'vocgan.wav',
+    'asmr2.mp3',
   ].map(filename => ({
     id: filename.split('.')[0],
     name: filename,
@@ -26,9 +26,9 @@ export const list = () => {
 
 export const play = async (name, path) => {
   const music = {
-    url: 'file://' + path,
+    url: path,
     title: name,
-    duration: 0,
+    duration: 300,
   };
   const list = await TrackPlayer.getQueue();
   await TrackPlayer.remove(Array.from(Array(list.length), (_, index) => index));
